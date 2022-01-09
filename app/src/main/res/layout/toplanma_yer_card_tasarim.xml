@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/toplanma_yeri_imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/toplanma_noktasi" />
+
+        <TextView
+            android:id="@+id/toplanma_yeri_adi"
+            android:layout_width="193dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/toplanma_yeri_imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Toplanma Yerinin Adı" />
+
+        <TextView
+            android:id="@+id/enlem_boylam_adi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mahalle_adi"
+            tools:text="Enlem ve Boylam Bilgisi" />
+
+        <TextView
+            android:id="@+id/ilce_adi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/toplanma_yeri_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/toplanma_yeri_adi"
+            tools:text="İlçe Bilgisi" />
+
+        <TextView
+            android:id="@+id/mahalle_adi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toEndOf="@+id/toplanma_yeri_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/ilce_adi"
+            tools:text="Mahalle Bilgisi" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

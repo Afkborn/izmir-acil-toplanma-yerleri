@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/toplanmaYerleriListe">
+
+    <fragment
+        android:id="@+id/toplanmaYerleriListe"
+        android:name="com.bilgehankalay.izmirapi.Fragment.ToplanmaYerleriListe"
+        android:label="fragment_toplanma_yerleri_liste"
+        tools:layout="@layout/fragment_toplanma_yerleri_liste" >
+        <action
+            android:id="@+id/liste_to_detay"
+            app:destination="@id/toplanmaYeriDetay" />
+    </fragment>
+    <fragment
+        android:id="@+id/toplanmaYeriDetay"
+        android:name="com.bilgehankalay.izmirapi.Fragment.ToplanmaYeriDetay"
+        android:label="fragment_toplanma_yeri_detay"
+        tools:layout="@layout/fragment_toplanma_yeri_detay" >
+        <argument
+            android:name="toplanmaYeri"
+            app:argType="com.bilgehankalay.izmirapi.Model.ToplanmaYeri" />
+        <action
+            android:id="@+id/detay_to_liste"
+            app:destination="@id/toplanmaYerleriListe" />
+    </fragment>
+</navigation>
