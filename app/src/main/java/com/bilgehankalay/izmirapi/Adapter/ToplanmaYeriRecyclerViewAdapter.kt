@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 import com.bilgehankalay.izmirapi.databinding.ToplanmaYerCardTasarimBinding
 
-class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<ToplanmaYeri>) : RecyclerView.Adapter<ToplanmaYeriRecyclerViewAdapter.ToplanmaYeriCardTasarim>(){
+class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<ToplanmaYeri?>) : RecyclerView.Adapter<ToplanmaYeriRecyclerViewAdapter.ToplanmaYeriCardTasarim>(){
 
     var onImageViewClick : (ToplanmaYeri) -> Unit = {}
     var onRootClick : (ToplanmaYeri) ->  Unit = {}
@@ -21,19 +21,24 @@ class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<Topla
 
     override fun onBindViewHolder(holder: ToplanmaYeriCardTasarim, position: Int) {
         val toplanmaYeri = toplanmaYeriListe[position]
-        holder.toplanmaYeriCardTasarim.toplanmaYeriAdi.text = toplanmaYeri.adi
-        holder.toplanmaYeriCardTasarim.ilceAdi.text = "İlçe: ${toplanmaYeri.ilce}"
-        holder.toplanmaYeriCardTasarim.mahalleAdi.text= "Mahalle: ${toplanmaYeri.mahalle}"
 
-        val yuvarlananEnlem = String.format("%.4f", toplanmaYeri.enlem)
-        val yuvarlananBoylam = String.format("%.4f",toplanmaYeri.boylam)
-        holder.toplanmaYeriCardTasarim.enlemBoylamAdi.text = "Enlem ${yuvarlananEnlem} Boylam ${yuvarlananBoylam}"
+        if (toplanmaYeri != null){
+            holder.toplanmaYeriCardTasarim.toplanmaYeriAdi.text = toplanmaYeri.adi
+            holder.toplanmaYeriCardTasarim.ilceAdi.text = "İlçe: ${toplanmaYeri.ilce}"
+            holder.toplanmaYeriCardTasarim.mahalleAdi.text= "Mahalle: ${toplanmaYeri.mahalle}"
 
-        holder.toplanmaYeriCardTasarim.toplanmaYeriImageView.setOnClickListener {
-            onImageViewClick(toplanmaYeri)
-        }
-        holder.toplanmaYeriCardTasarim.root.setOnClickListener {
-            onRootClick(toplanmaYeri)
+            val yuvarlananEnlem = String.format("%.4f", toplanmaYeri.enlem)
+            val yuvarlananBoylam = String.format("%.4f",toplanmaYeri.boylam)
+            holder.toplanmaYeriCardTasarim.enlemBoylamAdi.text = "Enlem ${yuvarlananEnlem} Boylam ${yuvarlananBoylam}"
+
+            holder.toplanmaYeriCardTasarim.toplanmaYeriImageView.setOnClickListener {
+                onImageViewClick(toplanmaYeri)
+
+            }
+            holder.toplanmaYeriCardTasarim.root.setOnClickListener {
+                onRootClick(toplanmaYeri)
+
+            }
         }
 
     }
@@ -41,6 +46,11 @@ class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<Topla
     override fun getItemCount(): Int {
         return toplanmaYeriListe.size
 
+    }
+
+    fun updateList(yeniToplanmaYeriListe: List<ToplanmaYeri?>){
+        toplanmaYeriListe = yeniToplanmaYeriListe
+        this.notifyDataSetChanged()
     }
 
 }
