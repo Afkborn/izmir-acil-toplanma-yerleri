@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,6 @@ import com.bilgehankalay.izmirapi.Adapter.ToplanmaYeriRecyclerViewAdapter
 import com.bilgehankalay.izmirapi.Database.ToplanmaYeriDatabase
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 import com.bilgehankalay.izmirapi.Network.ApiUtils
-import com.bilgehankalay.izmirapi.R
 import com.bilgehankalay.izmirapi.Response.ExchangeResponse
 import com.bilgehankalay.izmirapi.databinding.FragmentToplanmaYerleriListeBinding
 import retrofit2.Call
@@ -27,6 +27,7 @@ import retrofit2.Response
 class ToplanmaYerleriListe : Fragment() {
     private  lateinit var binding : FragmentToplanmaYerleriListeBinding //view binding
     var onemliYerList : List<ToplanmaYeri?> = arrayListOf()
+    var onemliYerListArray : ArrayList<ToplanmaYeri?> = arrayListOf()
     private lateinit var toplanmaYeriDB : ToplanmaYeriDatabase
     val toplanmaYeriAdapter = ToplanmaYeriRecyclerViewAdapter(onemliYerList)
 
@@ -49,7 +50,8 @@ class ToplanmaYerleriListe : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
+/*
         binding.aramaText.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -58,7 +60,9 @@ class ToplanmaYerleriListe : Fragment() {
                 if (p0 != null && p0.isNotEmpty()) {
                     //aramayı yap
                     val aranan_onemli_yer_list: List<ToplanmaYeri?>
-                    aranan_onemli_yer_list = toplanmaYeriDB.toplanmaYeriDAO().getToplanmaYeriWithName(p0.toString())
+                    aranan_onemli_yer_list = toplanmaYeriDB.toplanmaYeriDAO().getToplanmaYeriWithName(
+                        p0.toString(),
+                    )
                     println("Gelen Sayi : ${aranan_onemli_yer_list.size}")
                     toplanmaYeriAdapter.updateList(aranan_onemli_yer_list)
 
@@ -69,6 +73,8 @@ class ToplanmaYerleriListe : Fragment() {
             }
 
         })
+
+ */
 
         toplanmaYeriAdapter.updateList(onemliYerList)
 

@@ -1,7 +1,6 @@
 package com.bilgehankalay.izmirapi.Interfaces
 
 import androidx.room.*
-import androidx.sqlite.db.SimpleSQLiteQuery
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 
 @Dao
@@ -20,8 +19,8 @@ interface ToplanmaYeriDAORoomInterface {
 
 
 
-    @Query("SELECT * from toplanmayerleri WHERE adi LIKE :aranacakAd ")
-    fun getToplanmaYeriWithName(aranacakAd : String) : List<ToplanmaYeri?>
+    @Query("SELECT * from toplanmayerleri WHERE adi LIKE :aranacakAd")
+    fun getToplanmaYeriWithName(aranacakAd: String) : List<ToplanmaYeri?>
 
     @Query("SELECT * from toplanmayerleri WHERE enlem = :enlem AND boylam = :boylam")
     fun getToplanmaYeriWithLL(enlem:Double, boylam:Double) : ToplanmaYeri?
