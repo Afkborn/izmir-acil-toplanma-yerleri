@@ -23,7 +23,7 @@ import retrofit2.Response
 
 class ToplanmaYerleriListe : Fragment() {
     private  lateinit var binding : FragmentToplanmaYerleriListeBinding //view binding
-    var onemliYerList : ArrayList<ToplanmaYeri> = arrayListOf()
+    var onemliYerList : List<ToplanmaYeri> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,7 +55,7 @@ class ToplanmaYerleriListe : Fragment() {
 
                     val tempList = response.body()?.onemliyerler
                     tempList?.let {
-                        onemliYerList = it as ArrayList<ToplanmaYeri>
+                        onemliYerList = it
                     }
 
                     println("Liste boyutu : ${onemliYerList.size}")
@@ -75,7 +75,7 @@ class ToplanmaYerleriListe : Fragment() {
 
                 override fun onFailure(call: Call<ExchangeResponse>, t: Throwable) {
                     println("ERROR ${t.localizedMessage}")
-                    Toast.makeText(requireContext(),"API HATA",Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),"API HATA ",Toast.LENGTH_LONG).show()
                 }
 
             }

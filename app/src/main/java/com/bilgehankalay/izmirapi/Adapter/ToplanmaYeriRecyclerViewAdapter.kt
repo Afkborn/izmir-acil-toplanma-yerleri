@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 import com.bilgehankalay.izmirapi.databinding.ToplanmaYerCardTasarimBinding
 
-class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : ArrayList<ToplanmaYeri>) : RecyclerView.Adapter<ToplanmaYeriRecyclerViewAdapter.ToplanmaYeriCardTasarim>(){
+class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<ToplanmaYeri>) : RecyclerView.Adapter<ToplanmaYeriRecyclerViewAdapter.ToplanmaYeriCardTasarim>(){
 
     var onImageViewClick : (ToplanmaYeri) -> Unit = {}
     var onRootClick : (ToplanmaYeri) ->  Unit = {}
