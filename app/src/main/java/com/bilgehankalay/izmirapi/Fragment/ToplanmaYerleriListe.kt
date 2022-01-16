@@ -278,6 +278,7 @@ class ToplanmaYerleriListe : Fragment() {
                 }
                 if (isVisibleFilter){
                     //hide
+                    toplanmaYeriAdapter.updateList(onemliYerList)
                     binding.ilceSpinner.visibility = View.GONE
                     binding.ilceText.visibility = View.GONE
                     binding.mahalleSpinner.visibility = View.GONE
@@ -305,8 +306,8 @@ class ToplanmaYerleriListe : Fragment() {
 
                 if (isVisibleSearch){
                     //hide
+                    toplanmaYeriAdapter.updateList(onemliYerList)
                     binding.searchView.visibility = View.GONE
-
                 }
                 else{
                     //show
