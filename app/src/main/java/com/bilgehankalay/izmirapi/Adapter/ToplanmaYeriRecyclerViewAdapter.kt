@@ -48,6 +48,8 @@ class ToplanmaYeriRecyclerViewAdapter(private var toplanmaYeriListe : List<Topla
 
     }
 
+
+
     fun updateList(yeniToplanmaYeriListe: List<ToplanmaYeri?>){
         toplanmaYeriListe = yeniToplanmaYeriListe
         this.notifyDataSetChanged()

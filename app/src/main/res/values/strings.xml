@@ -5,4 +5,9 @@
     <string name="geri">Geri</string>
     <string name="haritada_goster">Haritada Göster</string>
     <string name="toplanma_yeri_arama">toplanma yeri arama</string>
+    <string name="filtrele">Filtrele</string>
+    <string name="ara">Ara</string>
+    <string name="mahalle">Mahalle</string>
+    <string name="ilce">İlçe</string>
+    <string name="yenile">Yenile</string>
 </resources>
