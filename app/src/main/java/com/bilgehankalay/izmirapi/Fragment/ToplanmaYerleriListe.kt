@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,7 +43,7 @@ class ToplanmaYerleriListe : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         toplanmaYeriDB = ToplanmaYeriDatabase.getirToplanmaYeriDatabase(requireContext())!!
-        onemliYerList = toplanmaYeriDB.toplanmaYeriDAO().tumToplanmaYerleriGetir()
+        onemliYerList = toplanmaYeriDB.toplanmaYeriDAO().tumAcilToplanmaYerleriGetir()
         setHasOptionsMenu(true)
     }
 
@@ -58,7 +59,7 @@ class ToplanmaYerleriListe : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (requireActivity() as AppCompatActivity?)!!.supportActionBar!!.show()
 
         binding.ilceSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -143,7 +144,7 @@ class ToplanmaYerleriListe : Fragment() {
 
         if (onemliYerList.isEmpty()){
             Toast.makeText(requireContext(),"Acil toplanma yerleri internetten güncelleniyor.",Toast.LENGTH_LONG).show()
-            onemliYerGetir()
+            acil_toplanma_yerleri_getir()
         }
         else{
             toplanmaYeriAdapter.updateList(onemliYerList)
@@ -208,10 +209,10 @@ class ToplanmaYerleriListe : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
-    private fun onemliYerGetir(){
+    private fun acil_toplanma_yerleri_getir(){
 
 
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().onemliYerAl().enqueue(
+        ApiUtils.ToplanmaYeriDAOInterfaceGetir().toplanma_yerleri_al().enqueue(
             object : Callback<ExchangeResponse> {
                 override fun onResponse(
                     call: Call<ExchangeResponse>,
@@ -233,6 +234,7 @@ class ToplanmaYerleriListe : Fragment() {
                         if (onemliYer != null){
                             val returnValueOfDB = toplanmaYeriDB.toplanmaYeriDAO().getToplanmaYeriWithLL(onemliYer.enlem,onemliYer.boylam)
                             if (returnValueOfDB == null){
+                                onemliYer.type = 0
                                 toplanmaYeriDB.toplanmaYeriDAO().toplanmaYeriEkle(onemliYer)
                             }
                         }
@@ -267,6 +269,7 @@ class ToplanmaYerleriListe : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.nav_menu,menu)
         super.onCreateOptionsMenu(menu, inflater)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -316,7 +319,7 @@ class ToplanmaYerleriListe : Fragment() {
                 isVisibleSearch = !isVisibleSearch
             }
             R.id.yenile->{
-                onemliYerGetir()
+                acil_toplanma_yerleri_getir()
             }
         }
         return super.onOptionsItemSelected(item)

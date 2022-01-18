@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/toplanmaYerleriListe">
+    app:startDestination="@id/izmirApi_Menu">
 
     <fragment
         android:id="@+id/toplanmaYerleriListe"
@@ -26,4 +26,21 @@
             android:id="@+id/detay_to_liste"
             app:destination="@id/toplanmaYerleriListe" />
     </fragment>
+    <fragment
+        android:id="@+id/izmirApi_Menu"
+        android:name="com.bilgehankalay.izmirapi.Fragment.IzmirApi_Menu"
+        android:label="fragment_izmir_api__menu"
+        tools:layout="@layout/fragment_izmir_api__menu" >
+        <action
+            android:id="@+id/menu_to_toplanma_yerleri_liste"
+            app:destination="@id/toplanmaYerleriListe" />
+        <action
+            android:id="@+id/menu_to_muhtarliklar_liste"
+            app:destination="@id/muhtarliklarListe" />
+    </fragment>
+    <fragment
+        android:id="@+id/muhtarliklarListe"
+        android:name="com.bilgehankalay.izmirapi.Fragment.MuhtarliklarListe"
+        android:label="fragment_muhtarliklar_liste"
+        tools:layout="@layout/fragment_muhtarliklar_liste" />
 </navigation>

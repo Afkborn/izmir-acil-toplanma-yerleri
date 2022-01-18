@@ -14,8 +14,12 @@ interface ToplanmaYeriDAORoomInterface {
     @Delete
     fun toplanmaYeriSil(toplanmaYeri: ToplanmaYeri)
 
-    @Query("SELECT * from toplanmayerleri")
-    fun tumToplanmaYerleriGetir() : List<ToplanmaYeri?>
+    @Query("SELECT * from toplanmayerleri WHERE type = 0")
+    fun tumAcilToplanmaYerleriGetir() : List<ToplanmaYeri?>
+
+
+    @Query("SELECT * from toplanmayerleri WHERE type = 1")
+    fun tumMuhtarlikYerleriGetir() : List<ToplanmaYeri?>
 
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">İzmirAPI</string>
+    <string name="app_name">İzmir BB</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="geri">Geri</string>
@@ -10,4 +10,7 @@
     <string name="mahalle">Mahalle</string>
     <string name="ilce">İlçe</string>
     <string name="yenile">Yenile</string>
+    <string name="izmir_buyuksehir_logo">izmir büyükşehir logosu</string>
+    <string name="acil_toplanma_yerleri">Acil Toplanma Yerleri</string>
+    <string name="muhtarliklar">Muhtarlıklar</string>
 </resources>

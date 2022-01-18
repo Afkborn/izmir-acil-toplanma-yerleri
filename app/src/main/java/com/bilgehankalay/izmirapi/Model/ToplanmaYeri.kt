@@ -9,8 +9,9 @@ import java.io.Serializable
 @Entity(tableName = "toplanmayerleri")
 data class ToplanmaYeri(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id : Int = 0,
-
-
+    @ColumnInfo(name = "type") var type : Int,
+    //  type 0 => acil toplanma yeri,
+    
     @ColumnInfo(name = "ilce") @SerializedName("ILCE") @Expose var ilce : String,
     @ColumnInfo(name = "kapino") @SerializedName("KAPINO") @Expose var kapino : String,
     @ColumnInfo(name = "enlem") @SerializedName("ENLEM") @Expose var enlem : Double,

@@ -8,7 +8,7 @@ import com.bilgehankalay.izmirapi.Interfaces.ToplanmaYeriDAORoomInterface
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 
 
-@Database(entities = [ToplanmaYeri::class], version = 1)
+@Database(entities = [ToplanmaYeri::class], version = 3)
 abstract class ToplanmaYeriDatabase : RoomDatabase(){
     abstract fun toplanmaYeriDAO() : ToplanmaYeriDAORoomInterface
 
@@ -21,7 +21,7 @@ abstract class ToplanmaYeriDatabase : RoomDatabase(){
                     context,
                     ToplanmaYeriDatabase::class.java,
                     "toplanmayeri.db"
-                ).allowMainThreadQueries().build()
+                ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
             }
             return INSTANCE
 
