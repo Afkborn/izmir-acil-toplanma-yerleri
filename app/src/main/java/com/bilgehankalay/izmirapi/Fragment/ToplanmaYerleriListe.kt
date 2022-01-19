@@ -18,7 +18,7 @@ import com.bilgehankalay.izmirapi.Database.ToplanmaYeriDatabase
 import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 import com.bilgehankalay.izmirapi.Network.ApiUtils
 import com.bilgehankalay.izmirapi.R
-import com.bilgehankalay.izmirapi.Response.ExchangeResponse
+import com.bilgehankalay.izmirapi.Response.OnemliYerResponse
 import com.bilgehankalay.izmirapi.databinding.FragmentToplanmaYerleriListeBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -233,10 +233,10 @@ class ToplanmaYerleriListe : Fragment() {
     // datatype 0
     private fun acil_toplanma_yerleri_getir(){
         ApiUtils.ToplanmaYeriDAOInterfaceGetir().toplanma_yerleri_al().enqueue(
-            object : Callback<ExchangeResponse> {
+            object : Callback<OnemliYerResponse> {
                 override fun onResponse(
-                    call: Call<ExchangeResponse>,
-                    response: Response<ExchangeResponse>
+                    call: Call<OnemliYerResponse>,
+                    response: Response<OnemliYerResponse>
                 ) {
                     val gelenKayitSayisi = response.body()?.kayit_sayisi
                     val tempList = response.body()?.onemliyerler
@@ -261,7 +261,7 @@ class ToplanmaYerleriListe : Fragment() {
 
                 }
 
-                override fun onFailure(call: Call<ExchangeResponse>, t: Throwable) {
+                override fun onFailure(call: Call<OnemliYerResponse>, t: Throwable) {
                     println("ERROR ${t.localizedMessage}")
                     Toast.makeText(requireContext(),"API hatası, daha sonra tekrar deneyin!",Toast.LENGTH_LONG).show()
 
@@ -273,10 +273,10 @@ class ToplanmaYerleriListe : Fragment() {
 
     //datatype 1
     private fun muhtarliklar_getir(){
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().muhtarliklar_al().enqueue(object : Callback<ExchangeResponse>{
+        ApiUtils.ToplanmaYeriDAOInterfaceGetir().muhtarliklar_al().enqueue(object : Callback<OnemliYerResponse>{
             override fun onResponse(
-                call: Call<ExchangeResponse>,
-                response: Response<ExchangeResponse>
+                call: Call<OnemliYerResponse>,
+                response: Response<OnemliYerResponse>
             ) {
                 val gelenKayitSayisi = response.body()?.kayit_sayisi
                 val tempList = response?.body()?.onemliyerler
@@ -304,7 +304,7 @@ class ToplanmaYerleriListe : Fragment() {
 
             }
 
-            override fun onFailure(call: Call<ExchangeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<OnemliYerResponse>, t: Throwable) {
                 println("ERROR ${t.localizedMessage}")
                 Toast.makeText(requireContext(),"API hatası, daha sonra tekrar deneyin!",Toast.LENGTH_LONG).show()
             }

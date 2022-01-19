@@ -48,6 +48,11 @@ class IzmirApi_Menu : Fragment() {
             val gecisAction = IzmirApi_MenuDirections.menuToToplanmaYerleriListe(1)
             findNavController().navigate(gecisAction)
         }
+        binding.buttonOtobusHatlari.setOnClickListener {
+            val gecisAction = IzmirApi_MenuDirections.menuToOtobusHatlari()
+            findNavController().navigate(gecisAction)
+
+        }
         binding.imageViewIzmirLogo.alpha = 0f
         binding.imageViewIzmirLogo.animate().apply {
             interpolator = LinearInterpolator()

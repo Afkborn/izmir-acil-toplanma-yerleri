@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_toplanma_yerleri_liste" >
         <action
             android:id="@+id/liste_to_detay"
-            app:destination="@id/toplanmaYeriDetay" />
+            app:destination="@id/toplanmaYeriDetay"
+            app:popUpToInclusive="false" />
         <argument
             android:name="data_type"
             app:argType="integer" />
@@ -27,7 +28,9 @@
             app:argType="com.bilgehankalay.izmirapi.Model.ToplanmaYeri" />
         <action
             android:id="@+id/detay_to_liste"
-            app:destination="@id/toplanmaYerleriListe" />
+            app:destination="@id/toplanmaYerleriListe"
+            app:popUpTo="@id/toplanmaYeriDetay"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/izmirApi_Menu"
@@ -37,5 +40,29 @@
         <action
             android:id="@+id/menu_to_toplanma_yerleri_liste"
             app:destination="@id/toplanmaYerleriListe" />
+        <action
+            android:id="@+id/menu_to_otobus_hatlari"
+            app:destination="@id/otobusHatlari" />
+    </fragment>
+    <fragment
+        android:id="@+id/otobusHatlari"
+        android:name="com.bilgehankalay.izmirapi.Fragment.OtobusHatlari"
+        android:label="fragment_otobus_hatlari"
+        tools:layout="@layout/fragment_otobus_hatlari" >
+        <action
+            android:id="@+id/otobus_hatlari_to_hareket_saatleri"
+            app:destination="@id/otobusHareketSaatleri" />
+    </fragment>
+    <fragment
+        android:id="@+id/otobusHareketSaatleri"
+        android:name="com.bilgehankalay.izmirapi.Fragment.OtobusHareketSaatleri"
+        android:label="fragment_otobus_hareket_saatleri"
+        tools:layout="@layout/fragment_otobus_hareket_saatleri" >
+        <argument
+            android:name="hatNo"
+            app:argType="integer" />
+        <argument
+            android:name="adi"
+            app:argType="string" />
     </fragment>
 </navigation>

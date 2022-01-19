@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">İzmir BB</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="geri">Geri</string>
     <string name="haritada_goster">Haritada Göster</string>
@@ -15,4 +14,30 @@
     <string name="muhtarliklar">Muhtarlıklar</string>
     <string name="ilce_nokta">İlçe :</string>
     <string name="mahalle_nokta">Mahalle :</string>
+    <string name="otobus_hatlari">Otobüs Hatları</string>
+    <string name="hatlar">Hatlar</string>
+    <string name="baslangic_yeri">Başlangıç Yeri:</string>
+    <string name="bitis_yeri">Bitiş Yeri:</string>
+    <string name="calisma_saati_ggidis">Çalışma Saati Gidiş:</string>
+    <string name="aciklama">Açıklama:</string>
+    <string name="calisma_saati_donus">Çalışma Saati Dönüş:</string>
+    <string name="calisma_saati_gidis">Çalışma Saati\nGidiş:</string>
+    <string name="tarife">Tarife:</string>
+    <string name="donus">Dönüş:</string>
+    <string name="hareket_saatleri">Hareket Saatleri</string>
+    <string name="gidisdonus">Gidiş ➜ Dönüş</string>
+    <string name="bisikletli_gidis">Bisikletli Gidis</string>
+    <string name="sag_ok">➜</string>
+    <string name="elektrikli_gidis">Elektrikli Gidiş</string>
+    <string name="engelli_gidis">Engelli Gidiş</string>
+    <string name="bisikletli_donus">Bisikletli Dönüş</string>
+    <string name="elektrikli_donus">Elektrikli Dönüş</string>
+    <string name="engelli_donus">Engelli Dönüş</string>
+
+    <string-array name="hareketSaatleriSecekeler">
+        <item>Hafta İçi</item>
+        <item>Cumartesi</item>
+        <item>Pazar</item>
+    </string-array>
+
 </resources>
