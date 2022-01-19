@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/drawable/custom_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/fragment_izmir_api__menu.xml" value="0.3625" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/fragment_menu.xml" value="0.18" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/fragment_muhtarliklar_liste.xml" value="0.3625" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/fragment_toplanma_yeri_detay.xml" value="0.3625" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/fragment_toplanma_yerleri_liste.xml" value="0.3625" />
-        <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/toplanma_yer_card_tasarim.xml" value="0.3625" />
+        <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/layout/toplanma_yer_card_tasarim.xml" value="0.67" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
         <entry key="..\:/Bilgehan/Programlama/Kotlin/zmirAPI/app/src/main/res/xml/network_security_config.xml" value="0.3625" />
         <entry key="..\:/Users/Bilgehan/Desktop/izmir-acil-toplanma-yerleri-main/app/src/main/res/menu/nav_menu.xml" value="0.3625" />

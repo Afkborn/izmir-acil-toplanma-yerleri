@@ -6,13 +6,13 @@ import com.bilgehankalay.izmirapi.Model.ToplanmaYeri
 @Dao
 interface ToplanmaYeriDAORoomInterface {
     @Insert
-    fun toplanmaYeriEkle(toplanmaYeri: ToplanmaYeri)
+    fun onemliYerEkle(toplanmaYeri: ToplanmaYeri)
 
     @Update
-    fun toplanmaYeriGuncelle(toplanmaYeri: ToplanmaYeri)
+    fun onemliYerGuncelle(toplanmaYeri: ToplanmaYeri)
 
     @Delete
-    fun toplanmaYeriSil(toplanmaYeri: ToplanmaYeri)
+    fun onemliYerSil(toplanmaYeri: ToplanmaYeri)
 
     @Query("SELECT * from toplanmayerleri WHERE type = 0")
     fun tumAcilToplanmaYerleriGetir() : List<ToplanmaYeri?>
@@ -24,8 +24,8 @@ interface ToplanmaYeriDAORoomInterface {
 
 
     @Query("SELECT * from toplanmayerleri WHERE adi LIKE :aranacakAd")
-    fun getToplanmaYeriWithName(aranacakAd: String) : List<ToplanmaYeri?>
+    fun getOnemliYerWithName(aranacakAd: String) : List<ToplanmaYeri?>
 
     @Query("SELECT * from toplanmayerleri WHERE enlem = :enlem AND boylam = :boylam")
-    fun getToplanmaYeriWithLL(enlem:Double, boylam:Double) : ToplanmaYeri?
+    fun getOnemliYerWithLL(enlem:Double, boylam:Double) : ToplanmaYeri?
 }

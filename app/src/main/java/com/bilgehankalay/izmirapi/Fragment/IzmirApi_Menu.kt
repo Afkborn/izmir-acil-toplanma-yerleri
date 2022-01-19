@@ -39,11 +39,14 @@ class IzmirApi_Menu : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
         binding.buttonAcilToplanmaYerleri.setOnClickListener {
-            findNavController().navigate(IzmirApi_MenuDirections.menuToToplanmaYerleriListe())
+            val gecisAction = IzmirApi_MenuDirections.menuToToplanmaYerleriListe(0)
+            findNavController().navigate(gecisAction)
+
 
         }
         binding.buttonMuhtarliklar.setOnClickListener {
-            findNavController().navigate(IzmirApi_MenuDirections.menuToMuhtarliklarListe())
+            val gecisAction = IzmirApi_MenuDirections.menuToToplanmaYerleriListe(1)
+            findNavController().navigate(gecisAction)
         }
         binding.imageViewIzmirLogo.alpha = 0f
         binding.imageViewIzmirLogo.animate().apply {

@@ -18,14 +18,16 @@
             android:layout_height="100dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/toplanma_noktasi" />
+            tools:srcCompat="@drawable/ic_baseline_home_24" />
 
         <TextView
             android:id="@+id/toplanma_yeri_adi"
             android:layout_width="220dp"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:textStyle="bold"
@@ -38,12 +40,11 @@
             android:id="@+id/enlem_boylam_adi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="8dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mahalle_adi"
             tools:text="Enlem ve Boylam Bilgisi" />
 
@@ -51,21 +52,43 @@
             android:id="@+id/ilce_adi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/mahalle_adi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/toplanma_yeri_imageView"
             app:layout_constraintTop_toBottomOf="@+id/toplanma_yeri_adi"
-            tools:text="İlçe Bilgisi" />
+            tools:text="ilce_adi" />
 
         <TextView
             android:id="@+id/mahalle_adi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toEndOf="@+id/toplanma_yeri_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/ilce_adi"
-            tools:text="Mahalle Bilgisi" />
+            tools:text="mahalle_bilgisi" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ilce_nokta"
+            app:layout_constraintBottom_toTopOf="@+id/mahalle_adi"
+            app:layout_constraintEnd_toStartOf="@+id/ilce_adi"
+            app:layout_constraintTop_toBottomOf="@+id/toplanma_yeri_adi" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/mahalle_nokta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mahalle_adi" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

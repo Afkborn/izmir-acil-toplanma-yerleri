@@ -13,4 +13,6 @@
     <string name="izmir_buyuksehir_logo">izmir büyükşehir logosu</string>
     <string name="acil_toplanma_yerleri">Acil Toplanma Yerleri</string>
     <string name="muhtarliklar">Muhtarlıklar</string>
+    <string name="ilce_nokta">İlçe :</string>
+    <string name="mahalle_nokta">Mahalle :</string>
 </resources>

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/liste_to_detay"
             app:destination="@id/toplanmaYeriDetay" />
+        <argument
+            android:name="data_type"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/toplanmaYeriDetay"
@@ -34,13 +37,5 @@
         <action
             android:id="@+id/menu_to_toplanma_yerleri_liste"
             app:destination="@id/toplanmaYerleriListe" />
-        <action
-            android:id="@+id/menu_to_muhtarliklar_liste"
-            app:destination="@id/muhtarliklarListe" />
     </fragment>
-    <fragment
-        android:id="@+id/muhtarliklarListe"
-        android:name="com.bilgehankalay.izmirapi.Fragment.MuhtarliklarListe"
-        android:label="fragment_muhtarliklar_liste"
-        tools:layout="@layout/fragment_muhtarliklar_liste" />
 </navigation>

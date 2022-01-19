@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bilgehankalay.izmirapi.Adapter.ToplanmaYeriRecyclerViewAdapter
 import com.bilgehankalay.izmirapi.Database.ToplanmaYeriDatabase
@@ -28,6 +29,7 @@ import kotlin.collections.ArrayList
 
 class ToplanmaYerleriListe : Fragment() {
     private  lateinit var binding : FragmentToplanmaYerleriListeBinding //view binding
+    private  val args : ToplanmaYerleriListeArgs by navArgs()
     var onemliYerList : List<ToplanmaYeri?> = arrayListOf()
 
     private lateinit var toplanmaYeriDB : ToplanmaYeriDatabase
@@ -40,11 +42,22 @@ class ToplanmaYerleriListe : Fragment() {
     val mahalleler_listesi : ArrayList<String> = arrayListOf()
 
     var seciliİlce : String = ""
+
+    private var data_type : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         toplanmaYeriDB = ToplanmaYeriDatabase.getirToplanmaYeriDatabase(requireContext())!!
-        onemliYerList = toplanmaYeriDB.toplanmaYeriDAO().tumAcilToplanmaYerleriGetir()
+        data_type = args.dataType
+        when (data_type){
+            0 -> onemliYerList = toplanmaYeriDB.toplanmaYeriDAO().tumAcilToplanmaYerleriGetir()
+            1 -> onemliYerList = toplanmaYeriDB.toplanmaYeriDAO().tumMuhtarlikYerleriGetir()
+        }
+
         setHasOptionsMenu(true)
+
+
+
     }
 
     override fun onCreateView(
@@ -143,8 +156,9 @@ class ToplanmaYerleriListe : Fragment() {
         })
 
         if (onemliYerList.isEmpty()){
-            Toast.makeText(requireContext(),"Acil toplanma yerleri internetten güncelleniyor.",Toast.LENGTH_LONG).show()
-            acil_toplanma_yerleri_getir()
+            Toast.makeText(requireContext(),"Veriler internetten güncelleniyor.",Toast.LENGTH_LONG).show()
+            get_data_with_data_type()
+
         }
         else{
             toplanmaYeriAdapter.updateList(onemliYerList)
@@ -209,36 +223,41 @@ class ToplanmaYerleriListe : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
+    private fun get_data_with_data_type(){
+        when (data_type){
+            0 -> acil_toplanma_yerleri_getir()
+            1 -> muhtarliklar_getir()
+        }
+    }
+
+    // datatype 0
     private fun acil_toplanma_yerleri_getir(){
-
-
         ApiUtils.ToplanmaYeriDAOInterfaceGetir().toplanma_yerleri_al().enqueue(
             object : Callback<ExchangeResponse> {
                 override fun onResponse(
                     call: Call<ExchangeResponse>,
                     response: Response<ExchangeResponse>
                 ) {
-
+                    val gelenKayitSayisi = response.body()?.kayit_sayisi
                     val tempList = response.body()?.onemliyerler
                     tempList?.let {
                         onemliYerList = it
                     }
-
+                    onemliYerList.forEach { onemliYer ->
+                        if (onemliYer != null) {
+                            onemliYer.type = data_type
+                        }
+                    }
                     println("Liste boyutu : ${onemliYerList.size}")
+                    if (gelenKayitSayisi != null && onemliYerList.size == gelenKayitSayisi){
+                        println("Veri eşleşiyor.")
+                    }
 
                     Toast.makeText(requireContext(),"Toplanma yerleri başarılı bir şekilde güncellendi! (${onemliYerList.size} kayıt)",Toast.LENGTH_LONG).show()
                     toplanmaYeriAdapter.updateList(onemliYerList)
 
 
-                    for (onemliYer in onemliYerList){
-                        if (onemliYer != null){
-                            val returnValueOfDB = toplanmaYeriDB.toplanmaYeriDAO().getToplanmaYeriWithLL(onemliYer.enlem,onemliYer.boylam)
-                            if (returnValueOfDB == null){
-                                onemliYer.type = 0
-                                toplanmaYeriDB.toplanmaYeriDAO().toplanmaYeriEkle(onemliYer)
-                            }
-                        }
-                    }
+                    onemli_yer_liste_kaydet(onemliYerList)
 
                 }
 
@@ -252,6 +271,58 @@ class ToplanmaYerleriListe : Fragment() {
         )
     }
 
+    //datatype 1
+    private fun muhtarliklar_getir(){
+        ApiUtils.ToplanmaYeriDAOInterfaceGetir().muhtarliklar_al().enqueue(object : Callback<ExchangeResponse>{
+            override fun onResponse(
+                call: Call<ExchangeResponse>,
+                response: Response<ExchangeResponse>
+            ) {
+                val gelenKayitSayisi = response.body()?.kayit_sayisi
+                val tempList = response?.body()?.onemliyerler
+                tempList?.let {
+                    onemliYerList = it
+                }
+
+                onemliYerList.forEach { onemliYer ->
+                    if (onemliYer != null) {
+                        onemliYer.type = data_type
+                    }
+                }
+
+                if (gelenKayitSayisi != null && onemliYerList.size == gelenKayitSayisi){
+                    println("Veri eşleşiyor.")
+                }
+
+                println("Liste boyutu : ${onemliYerList.size}")
+
+                Toast.makeText(requireContext(),"Toplanma yerleri başarılı bir şekilde güncellendi! (${onemliYerList.size} kayıt)", Toast.LENGTH_LONG).show()
+
+                toplanmaYeriAdapter.updateList(onemliYerList)
+
+                onemli_yer_liste_kaydet(onemliYerList)
+
+            }
+
+            override fun onFailure(call: Call<ExchangeResponse>, t: Throwable) {
+                println("ERROR ${t.localizedMessage}")
+                Toast.makeText(requireContext(),"API hatası, daha sonra tekrar deneyin!",Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+    }
+
+    private fun onemli_yer_liste_kaydet(onemliYerList : List<ToplanmaYeri?>){
+        for (onemliYer in onemliYerList){
+            if (onemliYer != null){
+                val returnValueOfDB = toplanmaYeriDB.toplanmaYeriDAO().getOnemliYerWithLL(onemliYer.enlem,onemliYer.boylam)
+                if (returnValueOfDB == null){
+                    toplanmaYeriDB.toplanmaYeriDAO().onemliYerEkle(onemliYer)
+                }
+            }
+        }
+    }
 
     private fun secilenImageViewToplanmaYeriOnClick(gelenToplanmaYeri : ToplanmaYeri){
         val gmmIntentUri = Uri.parse("http://maps.google.com/maps?daddr=" + gelenToplanmaYeri.enlem + "," + gelenToplanmaYeri.boylam)
@@ -319,9 +390,13 @@ class ToplanmaYerleriListe : Fragment() {
                 isVisibleSearch = !isVisibleSearch
             }
             R.id.yenile->{
-                acil_toplanma_yerleri_getir()
+                get_data_with_data_type()
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+
+
 }
