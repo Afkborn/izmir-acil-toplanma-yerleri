@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ToplanmaYeriDAOInterface {
+interface IzmirDaoInterface {
 
     @GET("ibb/cbs/afetaciltoplanmaalani")
     fun toplanma_yerleri_al() : Call<OnemliYerResponse>

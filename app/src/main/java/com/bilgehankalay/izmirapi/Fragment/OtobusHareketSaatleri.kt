@@ -16,7 +16,6 @@ import com.bilgehankalay.izmirapi.Network.ApiUtils
 import com.bilgehankalay.izmirapi.R
 import com.bilgehankalay.izmirapi.Response.HareketSaatleriResponse
 import com.bilgehankalay.izmirapi.databinding.FragmentOtobusHareketSaatleriBinding
-import com.bilgehankalay.izmirapi.databinding.FragmentOtobusHatlariBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,7 +87,7 @@ class OtobusHareketSaatleri : Fragment() {
     }
 
     private fun hareket_saatleri_getir(){
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().hareket_saatleri_al(hatnumarasi).enqueue(object : Callback<HareketSaatleriResponse>{
+        ApiUtils.izmirDaoInterfaceGetir().hareket_saatleri_al(hatnumarasi).enqueue(object : Callback<HareketSaatleriResponse>{
             override fun onResponse(
                 call: Call<HareketSaatleriResponse>,
                 response: Response<HareketSaatleriResponse>

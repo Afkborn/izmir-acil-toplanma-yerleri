@@ -9,12 +9,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.bilgehankalay.izmirapi.Adapter.HareketSaatleriRecyclerViewAdapter
 import com.bilgehankalay.izmirapi.Database.HatlarDatabase
 import com.bilgehankalay.izmirapi.Model.Hat
 import com.bilgehankalay.izmirapi.Network.ApiUtils
-import com.bilgehankalay.izmirapi.R
 import com.bilgehankalay.izmirapi.Response.HatlarResponse
 import com.bilgehankalay.izmirapi.databinding.FragmentOtobusHatlariBinding
 import retrofit2.Call
@@ -100,7 +97,8 @@ class OtobusHatlari : Fragment() {
 
     private fun hatlari_getir(){
         val baslangic_hat_sayisi = otobusHatlariList.size
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().hatlari_al().enqueue(object : Callback<HatlarResponse>{
+
+        ApiUtils.izmirDaoInterfaceGetir().hatlari_al().enqueue(object : Callback<HatlarResponse>{
             override fun onResponse(
                 call: Call<HatlarResponse>,
                 response: Response<HatlarResponse>

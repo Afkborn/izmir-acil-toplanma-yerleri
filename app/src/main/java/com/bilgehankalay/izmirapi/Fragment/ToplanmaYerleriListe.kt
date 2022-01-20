@@ -232,7 +232,7 @@ class ToplanmaYerleriListe : Fragment() {
 
     // datatype 0
     private fun acil_toplanma_yerleri_getir(){
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().toplanma_yerleri_al().enqueue(
+        ApiUtils.izmirDaoInterfaceGetir().toplanma_yerleri_al().enqueue(
             object : Callback<OnemliYerResponse> {
                 override fun onResponse(
                     call: Call<OnemliYerResponse>,
@@ -273,7 +273,7 @@ class ToplanmaYerleriListe : Fragment() {
 
     //datatype 1
     private fun muhtarliklar_getir(){
-        ApiUtils.ToplanmaYeriDAOInterfaceGetir().muhtarliklar_al().enqueue(object : Callback<OnemliYerResponse>{
+        ApiUtils.izmirDaoInterfaceGetir().muhtarliklar_al().enqueue(object : Callback<OnemliYerResponse>{
             override fun onResponse(
                 call: Call<OnemliYerResponse>,
                 response: Response<OnemliYerResponse>

@@ -7,7 +7,6 @@ class RetrofitClient {
 
     companion object{
         fun getClient(baseURL: String) : Retrofit{
-
             return Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())

@@ -21,6 +21,7 @@ class HareketSaatleriRecyclerViewAdapter(private var hareketSaatleriList : List<
         if (hareketSaati != null){
             holder.hareketSaatleriCardBinding.let {
                 //06:15         06:35
+
                 it.textViewGidisDonus.text = "${hareketSaati.GidisSaat}         ${hareketSaati.DonusSaat}"
 
                 if(hareketSaati.BisikletliMiGidis)

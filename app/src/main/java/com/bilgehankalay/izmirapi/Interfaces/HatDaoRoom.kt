@@ -4,7 +4,7 @@ import androidx.room.*
 import com.bilgehankalay.izmirapi.Model.Hat
 
 @Dao
-interface HatDAO {
+interface HatDaoRoom {
     @Insert
     fun HatEkle(hat : Hat)
 

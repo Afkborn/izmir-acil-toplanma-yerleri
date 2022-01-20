@@ -33,6 +33,7 @@
     <string name="bisikletli_donus">Bisikletli Dönüş</string>
     <string name="elektrikli_donus">Elektrikli Dönüş</string>
     <string name="engelli_donus">Engelli Dönüş</string>
+    <string name="hava_durumu_foto">Hava Durumu Fotoğraf</string>
 
     <string-array name="hareketSaatleriSecekeler">
         <item>Hafta İçi</item>
