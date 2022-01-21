@@ -1,8 +1,14 @@
 package com.bilgehankalay.izmirapi.Model
 
+import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.time.LocalDateTime
+import java.util.*
 
 
 /*
@@ -18,7 +24,10 @@ import java.io.Serializable
             "humidity": "66"
 
  */
+
+
 data class HavaDurumu(
+    var sehir : String,
     @SerializedName("date") @Expose var date : String,
     @SerializedName("day") @Expose var day : String,
     @SerializedName("icon") @Expose var icon : String,

@@ -1,7 +1,6 @@
 package com.bilgehankalay.izmirapi.Fragment
 
 import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.bilgehankalay.izmirapi.Model.HavaDurumu
 import com.bilgehankalay.izmirapi.Network.ApiUtils
-import com.bilgehankalay.izmirapi.R
 import com.bilgehankalay.izmirapi.Response.WeatherResponse
 import com.bilgehankalay.izmirapi.databinding.FragmentIzmirApiMenuBinding
 import com.squareup.picasso.Picasso
@@ -21,17 +19,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.concurrent.schedule
 
 
 class IzmirApi_Menu : Fragment() {
 
-    private var havaDurumuListe : List<HavaDurumu> = arrayListOf()
+
+    private var havaDurumuListe : List<HavaDurumu?> = arrayListOf()
     private lateinit var binding : FragmentIzmirApiMenuBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        hava_durum_al()
+        //hava_durum_al()
 
     }
 
@@ -54,8 +54,13 @@ class IzmirApi_Menu : Fragment() {
 
         (requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
 
+        if (havaDurumuListe.isEmpty()){
+            binding.textViewHavaDurumSicaklik.text = "ERR"
+        }
+
         binding.constraintLayoutHavadurumu.setOnClickListener {
-            println("tıklandı.")
+            val gecisAction = IzmirApi_MenuDirections.menuToHavaDurumu()
+            findNavController().navigate(gecisAction)
         }
 
         binding.buttonAcilToplanmaYerleri.setOnClickListener {
@@ -119,13 +124,22 @@ class IzmirApi_Menu : Fragment() {
             ) {
                 val basariDurumu = response.body()?.success
                 if(basariDurumu != null && basariDurumu == true){
+                    val sehir = response.body()?.city
+
                     val tempList = response.body()?.result
+
                     tempList?.let {
                         havaDurumuListe = it
                     }
+                    havaDurumuListe.forEach {
+                        if (it != null && sehir != null){
+                            it.sehir = sehir
+
+                        }
+                    }
 
                     val bugunHavaDurum = havaDurumuListe[0]
-                    val bugunHavaDurumDegree = bugunHavaDurum.degree.toDouble().toInt()
+                    val bugunHavaDurumDegree = bugunHavaDurum!!.degree.toDouble().toInt()
 
                     binding.textViewHavaDurumSicaklik.text  = "${bugunHavaDurumDegree}°"
                     Picasso.get().load(bugunHavaDurum.icon).into(binding.imageViewHavaDurumuIcon)

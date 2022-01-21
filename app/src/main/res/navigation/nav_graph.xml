@@ -43,6 +43,9 @@
         <action
             android:id="@+id/menu_to_otobus_hatlari"
             app:destination="@id/otobusHatlari" />
+        <action
+            android:id="@+id/menu_to_hava_durumu"
+            app:destination="@id/havaDurumuFragment" />
     </fragment>
     <fragment
         android:id="@+id/otobusHatlari"
@@ -65,4 +68,9 @@
             android:name="adi"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/havaDurumuFragment"
+        android:name="com.bilgehankalay.izmirapi.Fragment.HavaDurumuFragment"
+        android:label="fragment_hava_durumu"
+        tools:layout="@layout/fragment_hava_durumu" />
 </navigation>

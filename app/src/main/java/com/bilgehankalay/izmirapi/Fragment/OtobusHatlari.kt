@@ -32,7 +32,7 @@ class OtobusHatlari : Fragment() {
         super.onCreate(savedInstanceState)
         hatlarDb = HatlarDatabase.getirHatlarDatabase(requireContext())!!
         otobusHatlariList = hatlarDb.hatlarDAO().tum_hatlari_getir()
-
+        hatlari_getir()
 
     }
 
@@ -46,6 +46,7 @@ class OtobusHatlari : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.buttonHareketSaatleri.setOnClickListener {
             if (secilenHat != null){
                 val gecisAction = OtobusHatlariDirections.otobusHatlariToHareketSaatleri(secilenHat.HatNo,secilenHat.Adi)
@@ -82,13 +83,11 @@ class OtobusHatlari : Fragment() {
             }
 
         }
-
         if (otobusHatlariList.isEmpty()){
             hatlari_getir()
         }
         else{
             hatlari_spinnera_yukle()
-            hatlari_getir()
         }
 
 
@@ -96,7 +95,7 @@ class OtobusHatlari : Fragment() {
     }
 
     private fun hatlari_getir(){
-        val baslangic_hat_sayisi = otobusHatlariList.size
+        //val baslangic_hat_sayisi = otobusHatlariList.size
 
         ApiUtils.izmirDaoInterfaceGetir().hatlari_al().enqueue(object : Callback<HatlarResponse>{
             override fun onResponse(
